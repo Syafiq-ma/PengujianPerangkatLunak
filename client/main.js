@@ -4,8 +4,6 @@ submit.addEventListener('click', function(e){
     e.preventDefault()
     var discount=document.getElementById('discount').value
     var price=document.getElementById('price').value
-    console.log(discount)
-    console.log(price)
 
     fetch('http://localhost:4000/api/discount', {
         method: 'POST',
@@ -19,6 +17,6 @@ submit.addEventListener('click', function(e){
     }).then(function(response){ 
         return response.json()
     }).then(function(data){
-        console.log(data)
-    }).catch(error => console.error('Error:', error)); 
+        document.getElementById("result").innerHTML = data.price.price
+    }).catch(() => document.getElementById("result").innerHTML = '0'); 
 })

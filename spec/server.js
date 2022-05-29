@@ -8,13 +8,14 @@ chai.use(chaiHttp);
 
 describe('Mengisi diskon dan harga barang', () => {
   it('Berhasil menghitung harga barang setelah diskon', (done) => {
+    let body = ({'price':10000,'discount':20})
     chai
       .request(server)
       .post('/api/discount')
-      .send({price:10000,discount:20})
+      .send(body)
       .end((err, res) => {
         res.should.have.status(200);
-        res.body.should.have.property('price').eql(8000);
+        res.body.should.have.property('price').eql({'price':8000});
         done(err);
       });
   });
@@ -28,7 +29,6 @@ describe('Tidak mengisi field harga barang dan diskon', () => {
       .post('/api/discount')
       
       .end((err, res) => {
-        //res.should.have.status(404);
         res.body.should.have.property('message').eql('price and discount should have a value');
         done(err);
       });

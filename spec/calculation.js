@@ -9,7 +9,7 @@ describe('Menghitung diskon dalam desimal', () => {
       total.should.equal(0.2);
     });
     it('Tidak terdapat input diskon', () => {
-      const total = calculations.Percent();
+      const total = calculations.Percent(0);
       total.should.equal(0);
     });
   });
